@@ -26,6 +26,20 @@ struct ContentView: View {
                     .opacity(isAnimating ? 1:0)
                     .offset(x: imageOffset.width, y: imageOffset.height)
                     .scaleEffect(imageScale)
+                //MARK: ON TAP GESTURE
+                    .onTapGesture(count:2) {
+                        if imageScale == 1 {
+                            withAnimation(.spring()){
+                                imageScale = 5
+                            }
+                        }else {
+                            withAnimation(.spring()){
+                                imageScale = 1
+                            }
+                        }
+                    }
+                    
+                    
                     
             }.navigationTitle("Pinch and Zoom")
             .navigationBarTitleDisplayMode(.inline)
