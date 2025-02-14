@@ -38,6 +38,15 @@ struct ContentView: View {
                             }
                         }
                     }
+                //MARK: DRAG GESTURE
+                    .gesture(
+                        DragGesture()
+                        .onChanged{ value in
+                            withAnimation(.linear(duration: 1)){
+                                imageOffset = value.translation
+                            }
+                        }
+                    )
                     
                     
                     
