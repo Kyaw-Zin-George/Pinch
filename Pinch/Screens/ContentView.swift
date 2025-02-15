@@ -46,6 +46,14 @@ struct ContentView: View {
                                 imageOffset = value.translation
                             }
                         }
+                            .onEnded({ _ in
+                                if imageScale <= 1{
+                                    withAnimation(.spring()) {
+                                        imageScale = 1
+                                        imageOffset = .zero
+                                    }
+                                }
+                            })
                     )
                     
                     
