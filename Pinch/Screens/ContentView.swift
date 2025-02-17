@@ -77,6 +77,28 @@ struct ContentView: View {
                 ,alignment: .top
         
             )
+            //MARK: CONTROLS
+            .overlay(
+                Group{
+                    HStack{
+                        //Scale down
+                        Button{
+                            
+                        }label:{
+                            ControlImageView(icon: magMinus)
+                        }
+                        //Reset
+                        
+                        //Scale up
+                        Button{
+                            
+                        }label:{
+                            ControlImageView(icon: magPlus)
+                        }
+                    }//Controls
+                }
+                    .padding(.bottom,30),alignment:.bottom
+                )
             }
     }
 }
