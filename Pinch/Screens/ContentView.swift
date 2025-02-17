@@ -88,7 +88,11 @@ struct ContentView: View {
                             ControlImageView(icon: magMinus)
                         }
                         //Reset
-                        
+                        Button{
+                            
+                        }label:{
+                            ControlImageView(icon: magArrDiagonal )
+                        }
                         //Scale up
                         Button{
                             
