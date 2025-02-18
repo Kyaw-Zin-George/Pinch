@@ -96,13 +96,20 @@ struct ContentView: View {
                         }
                         //Reset
                         Button{
-                            
+                            resetImageState()
                         }label:{
                             ControlImageView(icon: magArrDiagonal )
                         }
                         //Scale up
                         Button{
-                            
+                            withAnimation(.spring()){
+                                if imageScale < 5 {
+                                    imageScale += 1
+                                    if imageScale >= 5 {
+                                        imageScale = 5
+                                    }
+                                }
+                            }
                         }label:{
                             ControlImageView(icon: magPlus)
                         }
