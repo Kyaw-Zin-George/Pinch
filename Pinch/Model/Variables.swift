@@ -17,3 +17,4 @@ let arrowsUD = "arrow.up.and.down"
 
 let magMinus = "minus.magnifyingglass"
 let magPlus = "plus.magnifyingglass"
+let magArrDiagonal = "arrow.up.left.and.down.right.magnifyingglass"
