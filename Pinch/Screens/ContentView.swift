@@ -48,79 +48,98 @@ struct ContentView: View {
                 //MARK: DRAG GESTURE
                     .gesture(
                         DragGesture()
-                        .onChanged{ value in
-                            withAnimation(.linear(duration: 1)){
-                                imageOffset = value.translation
+                            .onChanged{ value in
+                                withAnimation(.linear(duration: 1)){
+                                    imageOffset = value.translation
+                                }
                             }
-                        }
                             .onEnded({ _ in
                                 if imageScale <= 1{
                                     resetImageState()
                                 }
                             })
                     )
-                    
-                    
-                    
-            }.navigationTitle("Pinch and Zoom")
-            .navigationBarTitleDisplayMode(.inline)
-            .onAppear(perform: {
-                withAnimation(.linear(duration: 1)) {
-                    isAnimating = true
-                }
-            })
-            //MARK: INFO PANEL
-            .overlay(
-                InfoPanelView(scale: imageScale, offset: imageOffset)
-                    .padding(.horizontal)
-                    .padding(.top,30)
-                ,alignment: .top
-        
-            )
-            //MARK: CONTROLS
-            .overlay(
-                Group{
-                    HStack{
-                        //Scale down
-                        Button{
-                            withAnimation(.spring()){
-                                if imageScale > 1 {
-                                    imageScale -= 1
-                                    if imageScale <= 1 {
-                                        imageScale = 1
-                                    }
-                                }
-                            }
-                        }label:{
-                            ControlImageView(icon: magMinus)
-                        }
-                        //Reset
-                        Button{
-                            resetImageState()
-                        }label:{
-                            ControlImageView(icon: magArrDiagonal )
-                        }
-                        //Scale up
-                        Button{
-                            withAnimation(.spring()){
-                                if imageScale < 5 {
-                                    imageScale += 1
-                                    if imageScale >= 5 {
+                //MARK: Magnification
+                    .gesture(
+                        MagnificationGesture()
+                            .onChanged{ value in
+                                withAnimation(.linear(duration: 1)){
+                                    if imageScale >= 1 && imageScale <= 5{
+                                        imageScale = value
+                                    }else if imageScale > 5{
                                         imageScale = 5
                                     }
                                 }
                             }
-                        }label:{
-                            ControlImageView(icon: magPlus)
-                        }
-                    }//Controls
-                    .padding(EdgeInsets(top: 12, leading: 20, bottom: 12, trailing: 20))
-                    .clipShape(RoundedRectangle(cornerRadius: 12))
-                    .opacity(isAnimating ? 1 : 0)
-                }
-                    .padding(.bottom,30),alignment:.bottom
+                            .onEnded({_ in
+                                if imageScale > 5 {
+                                    imageScale = 5
+                                }else if imageScale <= 1 {
+                                    resetImageState()
+                                }
+                            })
+                    )
+                
+                
+            }.navigationTitle("Pinch and Zoom")
+                .navigationBarTitleDisplayMode(.inline)
+                .onAppear(perform: {
+                    withAnimation(.linear(duration: 1)) {
+                        isAnimating = true
+                    }
+                })
+            //MARK: INFO PANEL
+                .overlay(
+                    InfoPanelView(scale: imageScale, offset: imageOffset)
+                        .padding(.horizontal)
+                        .padding(.top,30)
+                    ,alignment: .top
+                    
                 )
-            }
+            //MARK: CONTROLS
+                .overlay(
+                    Group{
+                        HStack{
+                            //Scale down
+                            Button{
+                                withAnimation(.spring()){
+                                    if imageScale > 1 {
+                                        imageScale -= 1
+                                        if imageScale <= 1 {
+                                            imageScale = 1
+                                        }
+                                    }
+                                }
+                            }label:{
+                                ControlImageView(icon: magMinus)
+                            }
+                            //Reset
+                            Button{
+                                resetImageState()
+                            }label:{
+                                ControlImageView(icon: magArrDiagonal )
+                            }
+                            //Scale up
+                            Button{
+                                withAnimation(.spring()){
+                                    if imageScale < 5 {
+                                        imageScale += 1
+                                        if imageScale >= 5 {
+                                            imageScale = 5
+                                        }
+                                    }
+                                }
+                            }label:{
+                                ControlImageView(icon: magPlus)
+                            }
+                        }//Controls
+                        .padding(EdgeInsets(top: 12, leading: 20, bottom: 12, trailing: 20))
+                        .clipShape(RoundedRectangle(cornerRadius: 12))
+                        .opacity(isAnimating ? 1 : 0)
+                    }
+                        .padding(.bottom,30),alignment:.bottom
+                )
+        }
     }
 }
 
