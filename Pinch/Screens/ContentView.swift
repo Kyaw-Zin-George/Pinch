@@ -64,16 +64,16 @@ struct ContentView: View {
                         MagnificationGesture()
                             .onChanged{ value in
                                 withAnimation(.linear(duration: 1)){
-                                    if imageScale >= 1 && imageScale <= 5{
+                                    if imageScale >= 1 && imageScale <= 6{
                                         imageScale = value
-                                    }else if imageScale > 5{
-                                        imageScale = 5
+                                    }else if imageScale > 6{
+                                        imageScale = 6
                                     }
                                 }
                             }
                             .onEnded({_ in
-                                if imageScale > 5 {
-                                    imageScale = 5
+                                if imageScale > 6 {
+                                    imageScale = 6
                                 }else if imageScale <= 1 {
                                     resetImageState()
                                 }
