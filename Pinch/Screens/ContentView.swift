@@ -66,14 +66,14 @@ struct ContentView: View {
                                 withAnimation(.linear(duration: 1)){
                                     if imageScale >= 1 && imageScale <= 6{
                                         imageScale = value
-                                    }else if imageScale > 6{
-                                        imageScale = 6
+                                    }else if imageScale > 5{
+                                        imageScale = 5
                                     }
                                 }
                             }
                             .onEnded({_ in
-                                if imageScale > 6 {
-                                    imageScale = 6
+                                if imageScale > 5 {
+                                    imageScale = 5
                                 }else if imageScale <= 1 {
                                     resetImageState()
                                 }
@@ -139,6 +139,19 @@ struct ContentView: View {
                     }
                         .padding(.bottom,30),alignment:.bottom
                 )
+            //MARK: DRAWER
+                .overlay(
+                    HStack(spacing: 12){
+                        //MARK: DRAWER HANDLE
+                        Image(systemName: leftArrow)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(height: 40)
+                            .padding(8)
+                            .foregroundStyle(.secondary)
+                        //MARK: THUMBNAILS
+                    }
+                    )
         }
     }
 }
