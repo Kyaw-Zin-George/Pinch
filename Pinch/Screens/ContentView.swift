@@ -150,9 +150,18 @@ struct ContentView: View {
                             .padding(8)
                             .foregroundStyle(.secondary)
                         //MARK: THUMBNAILS
+                        Spacer()
                     }
+                        .padding(EdgeInsets(top: 16, leading: 8, bottom: 16, trailing: 8))
+                        .background(.ultraThinMaterial)
+                        .clipShape(RoundedRectangle(cornerRadius: 12))
+                        .opacity(isAnimating ? 1 : 0)
+                        .frame(width: 260)
+                        .padding(.top, UIScreen.main.bounds.height / 32)
+                    ,alignment: .topTrailing
                     )
         }
+        .toolbarRole(.navigationStack)
     }
 }
 
