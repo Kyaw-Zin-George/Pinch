@@ -10,6 +10,9 @@ import Foundation
 let frontMagCover = "magazine-front-cover"
 let backMagCover = "magazine-back-cover"
 
+let frontThumbnail = "thumb-magazine-front-cover"
+let backThumbnail = "thumb-magazine-back-cover"
+
 let doubleCircle = "circle.circle"
 let arrowsuLdR = "arrow.up.left.and.arrow.down.right"
 let arrowsLR = "arrow.left.and.right"
