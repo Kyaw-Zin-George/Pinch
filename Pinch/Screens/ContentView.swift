@@ -12,6 +12,7 @@ struct ContentView: View {
     @State private var isAnimating : Bool = false
     @State private var imageScale : CGFloat = 1
     @State private var imageOffset : CGSize = .zero
+    @State private var isDrawerOpen : Bool = false
     //MARK: Function
     func resetImageState(){
         return withAnimation(.spring()){
@@ -143,12 +144,17 @@ struct ContentView: View {
                 .overlay(
                     HStack(spacing: 12){
                         //MARK: DRAWER HANDLE
-                        Image(systemName: leftArrow)
+                        Image(systemName: isDrawerOpen ? rightArrow : leftArrow)
                             .resizable()
                             .scaledToFit()
                             .frame(height: 40)
                             .padding(8)
                             .foregroundStyle(.secondary)
+                            .onTapGesture {
+                                withAnimation(.easeOut){
+                                    isDrawerOpen.toggle()
+                                }
+                            }
                         //MARK: THUMBNAILS
                         Spacer()
                     }
@@ -158,6 +164,7 @@ struct ContentView: View {
                         .opacity(isAnimating ? 1 : 0)
                         .frame(width: 260)
                         .padding(.top, UIScreen.main.bounds.height / 32)
+                        .offset(x:isDrawerOpen ? 20 : 215)
                     ,alignment: .topTrailing
                     )
         }
