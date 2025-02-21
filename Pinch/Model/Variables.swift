@@ -20,3 +20,4 @@ let magPlus = "plus.magnifyingglass"
 let magArrDiagonal = "arrow.up.left.and.down.right.magnifyingglass"
 
 let leftArrow = "chevron.compact.left"
+let rightArrow = "chevron.compact.right"
