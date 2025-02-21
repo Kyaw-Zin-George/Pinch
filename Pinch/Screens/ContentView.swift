@@ -162,6 +162,16 @@ struct ContentView: View {
                                 }
                             }
                         //MARK: THUMBNAILS
+                        ForEach(pages) { item in
+                            Image(item.thumbNailName)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 80)
+                                .clipShape(RoundedRectangle(cornerRadius: 8))
+                                .shadow(radius: 4)
+                            
+                        }
+                        
                         Spacer()
                     }
                         .padding(EdgeInsets(top: 16, leading: 8, bottom: 16, trailing: 8))
