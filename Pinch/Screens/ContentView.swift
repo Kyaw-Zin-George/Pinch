@@ -12,13 +12,19 @@ struct ContentView: View {
     @State private var isAnimating : Bool = false
     @State private var imageScale : CGFloat = 1
     @State private var imageOffset : CGSize = .zero
-    @State private var isDrawerOpen : Bool = false
+    @State private var isDrawerOpen : Bool = true
+    
+    let pages: [Page] = pagesData
+    @State private var pageIndex : Int = 1
     //MARK: Function
     func resetImageState(){
         return withAnimation(.spring()){
             imageScale = 1
             imageOffset = .zero
         }
+    }
+    func  currentPage() -> String{
+        return pages[pageIndex - 1].imageName
     }
     
     var body: some View {
@@ -27,7 +33,7 @@ struct ContentView: View {
                 Color.clear
                 
                 //MARK: Page
-                Image(frontMagCover)
+                Image(currentPage())
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
